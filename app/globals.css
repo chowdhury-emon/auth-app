@@ -1,15 +1,16 @@
 @import "tailwindcss";
+@import "@heroui/styles";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
+  --surface: #191715;
+  --border: #2B2520;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Override any color variable */
+  
+  --primary: oklch(67.966% 0.30021 335.915);
+  --accent: oklch(37.4% 0.01 67.558);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +20,37 @@
   }
 }
 
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer components {
+  /* .btn {
+    @apply p-2 px-3 bg-neutral-900 rounded-xl shadow/30 shadow-black;
+  } */
+
+  .nav-btn {
+    @apply p-2 px-3 bg-neutral-900 rounded-xl shadow/30 shadow-black
+  }
+
+  .highlight {
+    @apply bg-stone-900 px-2 py-1 rounded text-stone-200
+  }
+
+  .form-layout {
+    @apply grid gap-4 w-90 sm:w-sm h-fit mx-auto my-12 p-4 bg-surface border border-border rounded-2xl
+  }
+}
+
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
 }
